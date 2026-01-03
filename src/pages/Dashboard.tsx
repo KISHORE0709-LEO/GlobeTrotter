@@ -14,6 +14,7 @@ import { SearchBar } from "@/components/shared/SearchBar";
 import { DestinationCard } from "@/components/shared/DestinationCard";
 import { TripCard } from "@/components/shared/TripCard";
 import { StatCard } from "@/components/shared/StatCard";
+import { Footer } from "@/components/shared/Footer";
 import { Button } from "@/components/ui/button";
 
 import heroImage from "@/assets/hero-travel.jpg";
@@ -73,106 +74,109 @@ const recentTrips = [
 
 export default function Dashboard() {
   return (
-    <Layout>
-      <div className="container mx-auto px-4 py-6 sm:py-8">
-        {/* Hero Section */}
-        <motion.section
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          className="relative rounded-2xl sm:rounded-3xl overflow-hidden mb-8 sm:mb-10"
-        >
-          <div className="absolute inset-0">
-            <video
-              src="/src/assets/Blue Ocean Travel Vlog Opening Video.mp4"
-              autoPlay
-              loop
-              muted
-              className="w-full h-full object-cover"
-            />
-            <div className="absolute inset-0 bg-black/40" />
-          </div>
-          
-          <div className="relative z-10 p-6 sm:p-8 md:p-12 lg:p-16 xl:p-20 max-w-full sm:max-w-2xl">
-            <h1 className="font-display text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold mb-4 sm:mb-6 text-white leading-tight">
-              Where will your next
-              <span className="text-amber-300 block">adventure take you?</span>
-            </h1>
-            <p className="text-base sm:text-lg text-gray-200 mb-6 sm:mb-8 max-w-full sm:max-w-md leading-relaxed">
-              Plan, organize, and share your travel itineraries with ease. 
-              Your journey starts here.
-            </p>
-            <Link to="/plan-trip">
-              <Button variant="hero" size="xl">
-                Plan a New Trip
-                <ArrowRight className="ml-2 h-5 w-5" />
-              </Button>
-            </Link>
-          </div>
-        </motion.section>
-
-        {/* Search and Filter Bar */}
-        <section className="mb-8 sm:mb-10">
-          <SearchBar />
-        </section>
-
-        {/* Stats Grid */}
-        <section className="mb-8 sm:mb-10">
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
-            {stats.map((stat, index) => (
-              <StatCard key={stat.title} {...stat} delay={index} />
-            ))}
-          </div>
-        </section>
-
-        {/* Explore Destinations */}
-        <section className="mb-8 sm:mb-10">
-          <div className="flex flex-col sm:flex-row sm:items-center justify-between mb-4 sm:mb-6 gap-3">
-            <div>
-              <h2 className="font-display text-xl sm:text-2xl font-bold">Explore Destinations</h2>
-              <p className="text-muted-foreground text-sm sm:text-base">Discover popular places to visit</p>
+    <>
+      <Layout>
+        <div className="container mx-auto px-4 py-6 sm:py-8">
+          {/* Hero Section */}
+          <motion.section
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="relative rounded-2xl sm:rounded-3xl overflow-hidden mb-8 sm:mb-10"
+          >
+            <div className="absolute inset-0">
+              <video
+                src="/src/assets/Blue Ocean Travel Vlog Opening Video.mp4"
+                autoPlay
+                loop
+                muted
+                className="w-full h-full object-cover"
+              />
+              <div className="absolute inset-0 bg-black/40" />
             </div>
-            <Link to="/search">
-              <Button variant="ghost">
-                View All <ArrowRight className="ml-1 h-4 w-4" />
-              </Button>
-            </Link>
-          </div>
-          
-          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3 sm:gap-4">
-            {destinations.map((dest, index) => (
-              <motion.div
-                key={dest.name}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: index * 0.1 }}
-              >
-                <DestinationCard {...dest} />
-              </motion.div>
-            ))}
-          </div>
-        </section>
-
-        {/* Recent Trips */}
-        <section>
-          <div className="flex items-center justify-between mb-6">
-            <div>
-              <h2 className="font-display text-2xl font-bold">Recent Trips</h2>
-              <p className="text-muted-foreground">Your travel history at a glance</p>
+            
+            <div className="relative z-10 p-6 sm:p-8 md:p-12 lg:p-16 xl:p-20 max-w-full sm:max-w-2xl">
+              <h1 className="font-display text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold mb-4 sm:mb-6 text-white leading-tight">
+                Where will your next
+                <span className="text-amber-300 block">adventure take you?</span>
+              </h1>
+              <p className="text-base sm:text-lg text-gray-200 mb-6 sm:mb-8 max-w-full sm:max-w-md leading-relaxed">
+                Plan, organize, and share your travel itineraries with ease. 
+                Your journey starts here.
+              </p>
+              <Link to="/plan-trip">
+                <Button variant="hero" size="xl">
+                  Plan a New Trip
+                  <ArrowRight className="ml-2 h-5 w-5" />
+                </Button>
+              </Link>
             </div>
-            <Link to="/trips">
-              <Button variant="ghost">
-                View All <ArrowRight className="ml-1 h-4 w-4" />
-              </Button>
-            </Link>
-          </div>
-          
-          <div className="space-y-3">
-            {recentTrips.map((trip) => (
-              <TripCard key={trip.id} {...trip} />
-            ))}
-          </div>
-        </section>
-      </div>
-    </Layout>
+          </motion.section>
+
+          {/* Search and Filter Bar */}
+          <section className="mb-8 sm:mb-10">
+            <SearchBar />
+          </section>
+
+          {/* Stats Grid */}
+          <section className="mb-8 sm:mb-10">
+            <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
+              {stats.map((stat, index) => (
+                <StatCard key={stat.title} {...stat} delay={index} />
+              ))}
+            </div>
+          </section>
+
+          {/* Explore Destinations */}
+          <section className="mb-8 sm:mb-10">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between mb-4 sm:mb-6 gap-3">
+              <div>
+                <h2 className="font-display text-xl sm:text-2xl font-bold">Explore Destinations</h2>
+                <p className="text-muted-foreground text-sm sm:text-base">Discover popular places to visit</p>
+              </div>
+              <Link to="/search">
+                <Button variant="ghost">
+                  View All <ArrowRight className="ml-1 h-4 w-4" />
+                </Button>
+              </Link>
+            </div>
+            
+            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3 sm:gap-4">
+              {destinations.map((dest, index) => (
+                <motion.div
+                  key={dest.name}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: index * 0.1 }}
+                >
+                  <DestinationCard {...dest} />
+                </motion.div>
+              ))}
+            </div>
+          </section>
+
+          {/* Recent Trips */}
+          <section>
+            <div className="flex items-center justify-between mb-6">
+              <div>
+                <h2 className="font-display text-2xl font-bold">Recent Trips</h2>
+                <p className="text-muted-foreground">Your travel history at a glance</p>
+              </div>
+              <Link to="/trips">
+                <Button variant="ghost">
+                  View All <ArrowRight className="ml-1 h-4 w-4" />
+                </Button>
+              </Link>
+            </div>
+            
+            <div className="space-y-3">
+              {recentTrips.map((trip) => (
+                <TripCard key={trip.id} {...trip} />
+              ))}
+            </div>
+          </section>
+        </div>
+      </Layout>
+      <Footer />
+    </>
   );
 }

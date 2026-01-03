@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import { Heart, MessageCircle, Share2, Bookmark, User } from "lucide-react";
 import { Layout } from "@/components/layout/Layout";
 import { SearchBar } from "@/components/shared/SearchBar";
+import { Footer } from "@/components/shared/Footer";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 
@@ -90,96 +91,99 @@ export default function Community() {
   };
 
   return (
-    <Layout>
-      <div className="container mx-auto px-4 py-8 max-w-4xl">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          className="mb-8"
-        >
-          <h1 className="font-display text-3xl md:text-4xl font-bold mb-2">
-            Community
-          </h1>
-          <p className="text-muted-foreground">
-            Share your travel experiences and discover inspiration from fellow travelers
-          </p>
-        </motion.div>
+    <>
+      <Layout>
+        <div className="container mx-auto px-4 py-8 max-w-4xl">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="mb-8"
+          >
+            <h1 className="font-display text-3xl md:text-4xl font-bold mb-2">
+              Community
+            </h1>
+            <p className="text-muted-foreground">
+              Share your travel experiences and discover inspiration from fellow travelers
+            </p>
+          </motion.div>
 
-        {/* Search */}
-        <div className="mb-8">
-          <SearchBar placeholder="Search posts, destinations, or travelers..." />
-        </div>
+          {/* Search */}
+          <div className="mb-8">
+            <SearchBar placeholder="Search posts, destinations, or travelers..." />
+          </div>
 
-        {/* Feed */}
-        <div className="space-y-6">
-          {communityPosts.map((post, index) => (
-            <motion.article
-              key={post.id}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: index * 0.1 }}
-              className="bg-card rounded-xl border border-border overflow-hidden"
-            >
-              {/* Post Header */}
-              <div className="flex items-center gap-3 p-4">
-                <div className="w-10 h-10 rounded-full bg-gradient-hero flex items-center justify-center">
-                  <User className="h-5 w-5 text-primary-foreground" />
+          {/* Feed */}
+          <div className="space-y-6">
+            {communityPosts.map((post, index) => (
+              <motion.article
+                key={post.id}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: index * 0.1 }}
+                className="bg-card rounded-xl border border-border overflow-hidden"
+              >
+                {/* Post Header */}
+                <div className="flex items-center gap-3 p-4">
+                  <div className="w-10 h-10 rounded-full bg-gradient-hero flex items-center justify-center">
+                    <User className="h-5 w-5 text-primary-foreground" />
+                  </div>
+                  <div className="flex-1">
+                    <p className="font-medium">{post.user.name}</p>
+                    <p className="text-xs text-muted-foreground">{post.timestamp}</p>
+                  </div>
+                  <Badge variant="outline">{post.destination}</Badge>
                 </div>
-                <div className="flex-1">
-                  <p className="font-medium">{post.user.name}</p>
-                  <p className="text-xs text-muted-foreground">{post.timestamp}</p>
+
+                {/* Post Content */}
+                <div className="px-4 pb-4">
+                  <p className="text-foreground/90 leading-relaxed">{post.content}</p>
                 </div>
-                <Badge variant="outline">{post.destination}</Badge>
-              </div>
 
-              {/* Post Content */}
-              <div className="px-4 pb-4">
-                <p className="text-foreground/90 leading-relaxed">{post.content}</p>
-              </div>
+                {/* Post Image */}
+                <div className="relative aspect-video">
+                  <img
+                    src={post.image}
+                    alt={post.destination}
+                    className="w-full h-full object-cover"
+                  />
+                </div>
 
-              {/* Post Image */}
-              <div className="relative aspect-video">
-                <img
-                  src={post.image}
-                  alt={post.destination}
-                  className="w-full h-full object-cover"
-                />
-              </div>
-
-              {/* Post Actions */}
-              <div className="flex items-center justify-between p-4">
-                <div className="flex items-center gap-4">
+                {/* Post Actions */}
+                <div className="flex items-center justify-between p-4">
+                  <div className="flex items-center gap-4">
+                    <button
+                      onClick={() => toggleLike(post.id)}
+                      className={`flex items-center gap-2 transition-colors ${
+                        likedPosts.includes(post.id) ? 'text-destructive' : 'text-muted-foreground hover:text-foreground'
+                      }`}
+                    >
+                      <Heart className={`h-5 w-5 ${likedPosts.includes(post.id) ? 'fill-current' : ''}`} />
+                      <span className="text-sm">{post.likes + (likedPosts.includes(post.id) ? 1 : 0)}</span>
+                    </button>
+                    <button className="flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors">
+                      <MessageCircle className="h-5 w-5" />
+                      <span className="text-sm">{post.comments}</span>
+                    </button>
+                    <button className="flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors">
+                      <Share2 className="h-5 w-5" />
+                      <span className="text-sm">{post.shares}</span>
+                    </button>
+                  </div>
                   <button
-                    onClick={() => toggleLike(post.id)}
-                    className={`flex items-center gap-2 transition-colors ${
-                      likedPosts.includes(post.id) ? 'text-destructive' : 'text-muted-foreground hover:text-foreground'
+                    onClick={() => toggleSave(post.id)}
+                    className={`transition-colors ${
+                      savedPosts.includes(post.id) ? 'text-primary' : 'text-muted-foreground hover:text-foreground'
                     }`}
                   >
-                    <Heart className={`h-5 w-5 ${likedPosts.includes(post.id) ? 'fill-current' : ''}`} />
-                    <span className="text-sm">{post.likes + (likedPosts.includes(post.id) ? 1 : 0)}</span>
-                  </button>
-                  <button className="flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors">
-                    <MessageCircle className="h-5 w-5" />
-                    <span className="text-sm">{post.comments}</span>
-                  </button>
-                  <button className="flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors">
-                    <Share2 className="h-5 w-5" />
-                    <span className="text-sm">{post.shares}</span>
+                    <Bookmark className={`h-5 w-5 ${savedPosts.includes(post.id) ? 'fill-current' : ''}`} />
                   </button>
                 </div>
-                <button
-                  onClick={() => toggleSave(post.id)}
-                  className={`transition-colors ${
-                    savedPosts.includes(post.id) ? 'text-primary' : 'text-muted-foreground hover:text-foreground'
-                  }`}
-                >
-                  <Bookmark className={`h-5 w-5 ${savedPosts.includes(post.id) ? 'fill-current' : ''}`} />
-                </button>
-              </div>
-            </motion.article>
-          ))}
+              </motion.article>
+            ))}
+          </div>
         </div>
-      </div>
-    </Layout>
+      </Layout>
+      <Footer />
+    </>
   );
 }

@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 # Globetrotter Plans
 
 A modern travel planning application built with React, TypeScript, and Vite.
@@ -74,4 +74,4 @@ This involves constructing a solution that is both functional and insightful, po
 well-designed relational database and a smooth frontend experience. Teams must focus 
 on enabling users to organize personalized trips efficiently, stay within budget, and enjoy 
 full visibility of their journey.
->>>>>>> 620871a3d7b7074bc347049f0c708b936cf34e2a
+

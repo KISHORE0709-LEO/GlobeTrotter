@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import { Layout } from "@/components/layout/Layout";
 import { SearchBar } from "@/components/shared/SearchBar";
 import { TripCard } from "@/components/shared/TripCard";
+import { Footer } from "@/components/shared/Footer";
 
 import parisImage from "@/assets/destination-paris.jpg";
 import tokyoImage from "@/assets/destination-tokyo.jpg";
