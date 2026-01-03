@@ -83,10 +83,11 @@ export default function Dashboard() {
         >
           <div className="absolute inset-0">
             <video
-              src="/src/assets/Blue Ocean Travel Vlog Opening Video.mp4"
+              src="/travel-video.mp4"
               autoPlay
               loop
               muted
+              playsInline
               className="w-full h-full object-cover"
             />
             <div className="absolute inset-0 bg-black/40" />

@@ -261,23 +261,58 @@ app.get('/api/trips', authenticateToken, async (req, res) => {
   }
 });
 
-// Create trip
-app.post('/api/trips', authenticateToken, async (req, res) => {
+// Get trip categories
+app.get('/api/categories', async (req, res) => {
   try {
-    const { title, description, startDate, endDate, totalBudget, currency } = req.body;
-
-    if (!title || !startDate || !endDate) {
-      return res.status(400).json({ error: 'Title, start date, and end date are required' });
-    }
-
-    const result = await pool.query(
-      'INSERT INTO trips (user_id, title, description, start_date, end_date, total_budget, currency) VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING *',
-      [req.user.userId, title, description, startDate, endDate, totalBudget, currency]
-    );
-
-    res.status(201).json(result.rows[0]);
+    const result = await pool.query('SELECT * FROM trip_categories ORDER BY category');
+    res.json(result.rows);
   } catch (error) {
-    console.error('Create trip error:', error);
+    console.error('Get categories error:', error);
+    res.status(500).json({ error: 'Internal server error' });
+  }
+});
+
+// Search destinations with filters
+app.get('/api/destinations/search', async (req, res) => {
+  try {
+    const { q, budget_min, budget_max, category } = req.query;
+    let query = `
+      SELECT DISTINCT c.id, c.name as city_name, co.name as country_name, co.iso_code,
+             c.latitude, c.longitude, c.average_cost_per_day,
+             (SELECT image_url FROM attractions WHERE city_id = c.id LIMIT 1) as image_url
+      FROM cities c
+      JOIN countries co ON c.country_id = co.id
+      LEFT JOIN attractions a ON c.id = a.city_id
+      WHERE 1=1
+    `;
+    const params = [];
+    
+    if (q) {
+      params.push(`%${q}%`);
+      query += ` AND (c.name ILIKE $${params.length} OR co.name ILIKE $${params.length})`;
+    }
+    
+    if (budget_min) {
+      params.push(budget_min);
+      query += ` AND c.average_cost_per_day >= $${params.length}`;
+    }
+    
+    if (budget_max) {
+      params.push(budget_max);
+      query += ` AND c.average_cost_per_day <= $${params.length}`;
+    }
+    
+    if (category) {
+      params.push(category);
+      query += ` AND a.category = $${params.length}`;
+    }
+    
+    query += ' ORDER BY c.name LIMIT 50';
+    
+    const result = await pool.query(query, params);
+    res.json(result.rows);
+  } catch (error) {
+    console.error('Search destinations error:', error);
     res.status(500).json({ error: 'Internal server error' });
   }
 });
