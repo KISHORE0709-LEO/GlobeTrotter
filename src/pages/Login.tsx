@@ -37,14 +37,47 @@ export default function Login() {
     e.preventDefault();
     setIsLoading(true);
     
-    setTimeout(() => {
-      toast({
-        title: "Welcome back!",
-        description: "You have successfully logged in.",
+    try {
+      const response = await fetch('http://localhost:5000/api/auth/login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          email: formData.email,
+          password: formData.password,
+        }),
       });
+
+      const data = await response.json();
+
+      if (response.ok) {
+        // Store token and user data
+        localStorage.setItem('token', data.token);
+        localStorage.setItem('user', JSON.stringify(data.user));
+        
+        toast({
+          title: "Welcome back!",
+          description: `Hello ${data.user.firstName}! You have successfully logged in.`,
+        });
+        
+        navigate("/dashboard");
+      } else {
+        toast({
+          title: "Login Failed",
+          description: data.error || "Invalid email or password",
+          variant: "destructive",
+        });
+      }
+    } catch (error) {
+      toast({
+        title: "Connection Error",
+        description: "Unable to connect to server. Please try again.",
+        variant: "destructive",
+      });
+    } finally {
       setIsLoading(false);
-      navigate("/dashboard");
-    }, 1500);
+    }
   };
 
   const containerVariants: Variants = {
