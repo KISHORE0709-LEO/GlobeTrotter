@@ -7,18 +7,28 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import { useData } from "@/hooks/useData";
 
 interface SearchBarProps {
   placeholder?: string;
   onSearch?: (value: string) => void;
+  onFilter?: (filters: any) => void;
   showFilters?: boolean;
+  type?: 'cities' | 'attractions' | 'destinations';
 }
 
 export function SearchBar({ 
   placeholder = "Search destinations, trips, activities...", 
   onSearch,
-  showFilters = true 
+  onFilter,
+  showFilters = true,
+  type = 'cities'
 }: SearchBarProps) {
+  const { getCountries, getAttractionCategories } = useData();
+  
+  const countries = getCountries();
+  const categories = getAttractionCategories();
+
   return (
     <div className="flex flex-col sm:flex-row gap-3 w-full">
       <div className="relative flex-1">
@@ -35,45 +45,51 @@ export function SearchBar({
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
               <Button variant="outline" size="default" className="gap-2">
-                <SlidersHorizontal className="h-4 w-4" />
-                <span className="hidden sm:inline">Group by</span>
+                <Filter className="h-4 w-4" />
+                <span className="hidden sm:inline">Country</span>
               </Button>
             </DropdownMenuTrigger>
             <DropdownMenuContent>
-              <DropdownMenuItem>Region</DropdownMenuItem>
-              <DropdownMenuItem>Date</DropdownMenuItem>
-              <DropdownMenuItem>Status</DropdownMenuItem>
-              <DropdownMenuItem>Budget</DropdownMenuItem>
+              <DropdownMenuItem onClick={() => onFilter?.({ country: '' })}>All Countries</DropdownMenuItem>
+              {countries.map(country => (
+                <DropdownMenuItem key={country} onClick={() => onFilter?.({ country })}>
+                  {country}
+                </DropdownMenuItem>
+              ))}
             </DropdownMenuContent>
           </DropdownMenu>
 
-          <DropdownMenu>
-            <DropdownMenuTrigger asChild>
-              <Button variant="outline" size="default" className="gap-2">
-                <Filter className="h-4 w-4" />
-                <span className="hidden sm:inline">Filter</span>
-              </Button>
-            </DropdownMenuTrigger>
-            <DropdownMenuContent>
-              <DropdownMenuItem>All Trips</DropdownMenuItem>
-              <DropdownMenuItem>Ongoing</DropdownMenuItem>
-              <DropdownMenuItem>Upcoming</DropdownMenuItem>
-              <DropdownMenuItem>Completed</DropdownMenuItem>
-            </DropdownMenuContent>
-          </DropdownMenu>
+          {type === 'attractions' && (
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <Button variant="outline" size="default" className="gap-2">
+                  <SlidersHorizontal className="h-4 w-4" />
+                  <span className="hidden sm:inline">Category</span>
+                </Button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent>
+                <DropdownMenuItem onClick={() => onFilter?.({ category: '' })}>All Categories</DropdownMenuItem>
+                {categories.map(category => (
+                  <DropdownMenuItem key={category} onClick={() => onFilter?.({ category })}>
+                    {category.charAt(0).toUpperCase() + category.slice(1)}
+                  </DropdownMenuItem>
+                ))}
+              </DropdownMenuContent>
+            </DropdownMenu>
+          )}
 
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
               <Button variant="outline" size="default" className="gap-2">
                 <ArrowUpDown className="h-4 w-4" />
-                <span className="hidden sm:inline">Sort</span>
+                <span className="hidden sm:inline">Budget</span>
               </Button>
             </DropdownMenuTrigger>
             <DropdownMenuContent>
-              <DropdownMenuItem>Newest First</DropdownMenuItem>
-              <DropdownMenuItem>Oldest First</DropdownMenuItem>
-              <DropdownMenuItem>Budget: Low to High</DropdownMenuItem>
-              <DropdownMenuItem>Budget: High to Low</DropdownMenuItem>
+              <DropdownMenuItem onClick={() => onFilter?.({ maxCost: 1000 })}>All Budgets</DropdownMenuItem>
+              <DropdownMenuItem onClick={() => onFilter?.({ maxCost: 100 })}>Under $100</DropdownMenuItem>
+              <DropdownMenuItem onClick={() => onFilter?.({ maxCost: 150 })}>Under $150</DropdownMenuItem>
+              <DropdownMenuItem onClick={() => onFilter?.({ maxCost: 200 })}>Under $200</DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>
         </div>

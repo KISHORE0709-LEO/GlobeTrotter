@@ -7,6 +7,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/hooks/use-toast";
+import { apiEndpoints } from "@/lib/api";
 
 export default function Register() {
   const [profileImage, setProfileImage] = useState<string | null>(null);
@@ -44,7 +45,7 @@ export default function Register() {
     setIsLoading(true);
     
     try {
-      const response = await fetch('http://localhost:5001/api/auth/register', {
+      const response = await fetch(apiEndpoints.auth.register, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

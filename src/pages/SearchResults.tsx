@@ -5,6 +5,7 @@ import { Layout } from "@/components/layout/Layout";
 import { SearchBar } from "@/components/shared/SearchBar";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
+import { apiEndpoints } from "@/lib/api";
 
 export default function SearchResults() {
   const [results, setResults] = useState([]);
@@ -19,8 +20,8 @@ export default function SearchResults() {
     try {
       setLoading(true);
       const url = query 
-        ? `http://localhost:5001/api/destinations/search?q=${encodeURIComponent(query)}`
-        : 'http://localhost:5001/api/destinations';
+        ? `${apiEndpoints.destinations.search}?q=${encodeURIComponent(query)}`
+        : apiEndpoints.destinations.list;
       
       const response = await fetch(url);
       if (response.ok) {

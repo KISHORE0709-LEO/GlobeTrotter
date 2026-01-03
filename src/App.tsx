@@ -21,6 +21,8 @@ import Community from "./pages/Community";
 import CalendarView from "./pages/CalendarView";
 import AdminPanel from "./pages/AdminPanel";
 import Settings from "./pages/Settings";
+import Destinations from "./pages/Destinations";
+import Attractions from "./pages/Attractions";
 import About from "./pages/About";
 import NotFound from "./pages/NotFound";
 
@@ -47,6 +49,8 @@ const App = () => (
           <Route path="/search" element={<SearchResults />} />
           <Route path="/community" element={<Community />} />
           <Route path="/calendar" element={<CalendarView />} />
+          <Route path="/destinations" element={<Destinations />} />
+          <Route path="/attractions" element={<Attractions />} />
           <Route path="/about" element={<About />} />
           <Route path="/admin" element={<AdminPanel />} />
           <Route path="/settings" element={<Settings />} />

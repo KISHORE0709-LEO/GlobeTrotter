@@ -15,6 +15,7 @@ import { Layout } from "@/components/layout/Layout";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { useToast } from "@/hooks/use-toast";
+import { apiEndpoints } from "@/lib/api";
 
 import parisImage from "@/assets/destination-paris.jpg";
 import tokyoImage from "@/assets/destination-tokyo.jpg";
@@ -39,7 +40,7 @@ export default function Profile() {
       const user = JSON.parse(localStorage.getItem('user') || '{}');
       
       if (user.id) {
-        const response = await fetch(`http://localhost:5001/api/users/profile`, {
+        const response = await fetch(apiEndpoints.users.profile, {
           headers: {
             'Authorization': `Bearer ${token}`,
           },
@@ -64,7 +65,7 @@ export default function Profile() {
   const fetchUserTrips = async () => {
     try {
       const token = localStorage.getItem('token');
-      const response = await fetch('http://localhost:5001/api/trips', {
+      const response = await fetch(apiEndpoints.trips.list, {
         headers: {
           'Authorization': `Bearer ${token}`,
         },

@@ -149,9 +149,9 @@ async function importAllData() {
     
     // Check if CSV files exist and import them
     const files = {
-      destinations: './data/destinations.csv',
-      attractions: './data/attractions.csv',
-      categories: './data/trip_categories.csv'
+      destinations: '../data/destinations.csv',
+      attractions: '../data/attractions.csv',
+      categories: '../data/trip_categories.csv'
     };
     
     for (const [type, file] of Object.entries(files)) {

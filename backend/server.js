@@ -9,27 +9,38 @@ const app = express();
 const PORT = process.env.PORT || 5000;
 
 // Middleware
-app.use(cors());
+app.use(cors({
+  origin: ['http://localhost:5173', 'http://localhost:3000', 'http://127.0.0.1:5173', 'http://localhost:5001', 'http://localhost:8080'],
+  credentials: true
+}));
 app.use(express.json());
 
 // Database connection
 const pool = new Pool({
-  user: process.env.DB_USER || 'globetrotter_user',
-  host: process.env.DB_HOST || 'localhost',
-  database: process.env.DB_NAME || 'globetrotter_db',
-  password: process.env.DB_PASSWORD || 'globetrotter_pass_2024',
-  port: process.env.DB_PORT || 5432,
+  user: process.env.DB_USER,
+  host: process.env.DB_HOST,
+  database: process.env.DB_NAME,
+  password: process.env.DB_PASSWORD,
+  port: parseInt(process.env.DB_PORT) || 5432,
+  ssl: process.env.NODE_ENV === 'production' ? { rejectUnauthorized: false } : false,
+  connectionTimeoutMillis: 5000,
+  idleTimeoutMillis: 30000,
+  max: 20
 });
 
-// Test database connection
-pool.connect((err, client, release) => {
-  if (err) {
-    console.error('Error connecting to database:', err);
-  } else {
+// Test database connection with retry
+const connectDB = async () => {
+  try {
+    const client = await pool.connect();
     console.log('✅ Connected to PostgreSQL database');
-    release();
+    client.release();
+  } catch (err) {
+    console.error('❌ Database connection failed:', err.message);
+    console.log('Retrying in 5 seconds...');
+    setTimeout(connectDB, 5000);
   }
-});
+};
+connectDB();
 
 // Auth middleware
 const authenticateToken = (req, res, next) => {
