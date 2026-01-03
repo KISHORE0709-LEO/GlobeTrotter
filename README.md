@@ -1,77 +1,68 @@
-
-# Globetrotter Plans
-
-A modern travel planning application built with React, TypeScript, and Vite.
-
-## Getting Started
-
-To run this project locally:
-
-```sh
-# Install dependencies
-npm install
-
-# Start development server
-npm run dev
-
-# Build for production
-npm run build
-
-# Preview production build
-npm run preview
-```
-
-## Available Scripts
-- `npm run dev` - Start development server
-- `npm run build` - Build for production  
-- `npm run preview` - Preview production build
-- `npm run lint` - Run ESLint
-```
-
-## Technologies Used
-
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
-- React Router
-- Framer Motion
-
-## Available Scripts
-
-- `npm run dev` - Start development server
-- `npm run build` - Build for production
-- `npm run preview` - Preview production build
-- `npm run lint` - Run ESLint
-=======
 # GlobeTrotter
-GlobeTrotter– Empowering Personalized Travel Planning
 
-Overall Vision 
+**GlobeTrotter – Empowering Personalized Travel Planning**
 
-The overarching vision for GlobeTrotter is to become a personalized, intelligent, and 
-collaborative platform that transforms the way individuals plan and experience travel. The 
-platform aims to empower users to dream, design, and organize trips with ease by 
-offering an end-to-end travel planning tool that combines flexibility and interactivity. 
-It envisions a world where users can explore global destinations, visualize their journeys 
-through structured itineraries, make cost-effective decisions, and share their travel plans 
-within a community—making travel planning as exciting as the trip itself. 
+## 🌟 Overview
+GlobeTrotter is a modern, full-stack travel planning platform that helps users design, organize, and visualize personalized multi-city trips with ease. Built with cutting-edge technologies and following industry best practices.
 
-Mission
+## 🏗️ Architecture & Technical Stack
 
-The mission for the hackathon team is to build a user-centric, responsive application that 
-simplifies the complexity of planning multi-city travel. The platform should provide 
-travelers with intuitive tools to: 
+### Frontend
+- **React 18** with TypeScript for type safety
+- **Vite** for fast development and optimized builds
+- **Tailwind CSS** for responsive, utility-first styling
+- **shadcn/ui** for consistent, accessible UI components
+- **React Router** for client-side routing
+- **Framer Motion** for smooth animations
+- **React Query** for efficient data fetching and caching
+- **Zod** for robust client-side validation
 
-● Add and manage travel stops and durations 
-● Explore cities and activities of interest 
-● Estimate trip budgets automatically 
-● Visualize timelines and plans 
-● Share trip plans with others 
+### Backend
+- **Node.js** with Express.js framework
+- **SQLite** database for lightweight, embedded storage
+- **JWT** authentication with bcrypt password hashing
+- **WebSocket** for real-time updates
+- **Express Validator** for server-side input validation
+- **CORS** enabled for cross-origin requests
 
-This involves constructing a solution that is both functional and insightful, powered by a 
-well-designed relational database and a smooth frontend experience. Teams must focus 
-on enabling users to organize personalized trips efficiently, stay within budget, and enjoy 
-full visibility of their journey.
+### Database Design
+```sql
+users {
+  id: INTEGER PRIMARY KEY
+  email: TEXT UNIQUE NOT NULL
+  password: TEXT NOT NULL (bcrypt hashed)
+  name: TEXT NOT NULL
+  created_at: DATETIME
+}
 
+trips {
+  id: INTEGER PRIMARY KEY
+  user_id: INTEGER (FK)
+  title: TEXT NOT NULL
+  description: TEXT
+  start_date: DATE
+  end_date: DATE
+  budget: DECIMAL(10,2)
+  status: TEXT DEFAULT 'planning'
+  created_at: DATETIME
+}
+
+trip_destinations {
+  id: INTEGER PRIMARY KEY
+  trip_id: INTEGER (FK)
+  city_name: TEXT NOT NULL
+  country_name: TEXT NOT NULL
+  arrival_date: DATE
+  departure_date: DATE
+  budget: DECIMAL(10,2)
+}
+```
+
+## 🔒 Security Features
+- **Password Hashing**: bcrypt with salt rounds
+- **JWT Authentication**: Secure token-based auth
+- **Input Validation**: Both client and server-side validation
+- **SQL Injection Prevention**: Parameterized queries
+- **CORS Configuration**: Controlled cross-origin access
+- **Email Validation**: RFC-compliant email validation
+*Built with ❤️ for seamless travel planning experiences*
