@@ -3,14 +3,23 @@ import { motion } from "framer-motion";
 import { MapPin, Calendar, Users, Compass } from "lucide-react";
 import GetStartedButton from "@/components/GetStartedButton";
 
+// Import SVG files properly for Vite/Vercel
+import svg1 from "@/assets/LANDING/1.svg";
+import svg2 from "@/assets/LANDING/2.svg";
+import svg3 from "@/assets/LANDING/3.svg";
+import svg4 from "@/assets/LANDING/4.svg";
+import svg5 from "@/assets/LANDING/5.svg";
+import svg6 from "@/assets/LANDING/6.svg";
+import svg7 from "@/assets/LANDING/7.svg";
+
 const svgFiles = [
-  "/src/assets/LANDING/1.svg", // India SVG (starting image)
-  "/src/assets/LANDING/2.svg",
-  "/src/assets/LANDING/3.svg",
-  "/src/assets/LANDING/4.svg",
-  "/src/assets/LANDING/5.svg",
-  "/src/assets/LANDING/6.svg",
-  "/src/assets/LANDING/7.svg"
+  svg1, // India SVG (starting image)
+  svg2,
+  svg3,
+  svg4,
+  svg5,
+  svg6,
+  svg7
 ];
 
 export default function Landing() {
