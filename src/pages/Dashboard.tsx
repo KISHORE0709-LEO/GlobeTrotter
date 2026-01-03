@@ -83,19 +83,19 @@ export default function Dashboard() {
         >
           <div className="absolute inset-0">
             <img
-              src={heroImage}
+              src={baliImage}
               alt="Travel destination"
               className="w-full h-full object-cover"
             />
-            <div className="absolute inset-0 bg-gradient-to-r from-background via-background/80 to-transparent" />
+            <div className="absolute inset-0 bg-black/40" />
           </div>
           
-          <div className="relative z-10 p-8 md:p-12 lg:p-16 max-w-2xl">
-            <h1 className="font-display text-4xl md:text-5xl lg:text-6xl font-bold mb-4">
+          <div className="relative z-10 p-12 md:p-16 lg:p-20 max-w-2xl">
+            <h1 className="font-display text-4xl md:text-5xl lg:text-6xl font-bold mb-6 text-white">
               Where will your next
-              <span className="gradient-text block">adventure take you?</span>
+              <span className="text-amber-300 block">adventure take you?</span>
             </h1>
-            <p className="text-lg text-muted-foreground mb-6 max-w-md">
+            <p className="text-lg text-gray-200 mb-8 max-w-md leading-relaxed">
               Plan, organize, and share your travel itineraries with ease. 
               Your journey starts here.
             </p>

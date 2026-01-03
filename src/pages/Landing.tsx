@@ -63,13 +63,12 @@ export default function Landing() {
             viewport={{ once: true }}
             className="text-center mb-16"
           >
-            <h2 className="text-4xl font-bold text-gray-900 mb-6">
-              Plan Your Perfect Journey
+            <h2 className="text-4xl font-bold text-gray-900 mb-6 font-display">
+              Your Journey Starts Here
             </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
-              GlobeTrotter is your ultimate travel companion. Create detailed itineraries, 
-              manage your calendar, and connect with a community of fellow travelers. 
-              Turn your wanderlust into unforgettable adventures.
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed font-body">
+              Plan smarter, travel better. GlobeTrotter helps you create personalized itineraries, 
+              manage budgets, and discover amazing destinations worldwide.
             </p>
           </motion.div>
 
@@ -85,8 +84,8 @@ export default function Landing() {
               <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
                 <MapPin className="h-8 w-8 text-blue-600" />
               </div>
-              <h3 className="text-lg font-semibold text-gray-900 mb-2">Trip Planning</h3>
-              <p className="text-gray-600">Create detailed itineraries with destinations, activities, and accommodations.</p>
+              <h3 className="text-lg font-semibold text-gray-900 mb-2 font-display">Smart Planning</h3>
+              <p className="text-gray-600">Build detailed itineraries with budget tracking and timeline visualization.</p>
             </motion.div>
 
             <motion.div
@@ -99,8 +98,8 @@ export default function Landing() {
               <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
                 <Calendar className="h-8 w-8 text-green-600" />
               </div>
-              <h3 className="text-lg font-semibold text-gray-900 mb-2">Calendar View</h3>
-              <p className="text-gray-600">Organize your trips with an intuitive calendar interface.</p>
+              <h3 className="text-lg font-semibold text-gray-900 mb-2 font-display">Trip Organization</h3>
+              <p className="text-gray-600">Manage multiple trips with calendar views and timeline planning.</p>
             </motion.div>
 
             <motion.div
@@ -113,8 +112,8 @@ export default function Landing() {
               <div className="w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-4">
                 <Users className="h-8 w-8 text-purple-600" />
               </div>
-              <h3 className="text-lg font-semibold text-gray-900 mb-2">Community</h3>
-              <p className="text-gray-600">Connect with travelers and share experiences from around the world.</p>
+              <h3 className="text-lg font-semibold text-gray-900 mb-2 font-display">Travel Community</h3>
+              <p className="text-gray-600">Share itineraries and get inspired by fellow travelers' adventures.</p>
             </motion.div>
 
             <motion.div
@@ -127,11 +126,55 @@ export default function Landing() {
               <div className="w-16 h-16 bg-orange-100 rounded-full flex items-center justify-center mx-auto mb-4">
                 <Compass className="h-8 w-8 text-orange-600" />
               </div>
-              <h3 className="text-lg font-semibold text-gray-900 mb-2">Discover</h3>
-              <p className="text-gray-600">Find hidden gems and popular destinations tailored to your interests.</p>
+              <h3 className="text-lg font-semibold text-gray-900 mb-2 font-display">Explore More</h3>
+              <p className="text-gray-600">Discover destinations and activities that match your travel style.</p>
             </motion.div>
           </div>
         </div>
+
+        {/* Footer */}
+        <footer className="bg-gray-50 py-16">
+          <div className="max-w-6xl mx-auto px-6">
+            <div className="bg-yellow-800 rounded-3xl p-12 shadow-2xl text-white">
+              <div className="grid md:grid-cols-4 gap-8">
+                <div>
+                  <h3 className="text-xl font-bold mb-4 font-display">GlobeTrotter</h3>
+                  <p className="text-yellow-100">Empowering personalized travel planning for adventurers worldwide.</p>
+                </div>
+                <div>
+                  <h4 className="font-semibold mb-3 font-display">Features</h4>
+                  <ul className="space-y-2 text-yellow-100">
+                    <li>Trip Planning</li>
+                    <li>Budget Tracking</li>
+                    <li>Calendar View</li>
+                    <li>Community</li>
+                  </ul>
+                </div>
+                <div>
+                  <h4 className="font-semibold mb-3 font-display">Support</h4>
+                  <ul className="space-y-2 text-yellow-100">
+                    <li>Help Center</li>
+                    <li>Contact Us</li>
+                    <li>Travel Tips</li>
+                    <li>FAQ</li>
+                  </ul>
+                </div>
+                <div>
+                  <h4 className="font-semibold mb-3 font-display">Connect</h4>
+                  <ul className="space-y-2 text-yellow-100">
+                    <li>Newsletter</li>
+                    <li>Social Media</li>
+                    <li>Travel Blog</li>
+                    <li>Community</li>
+                  </ul>
+                </div>
+              </div>
+              <div className="border-t border-yellow-700 mt-8 pt-8 text-center text-yellow-100">
+                <p>&copy; 2024 GlobeTrotter. Made with ❤️ for travelers.</p>
+              </div>
+            </div>
+          </div>
+        </footer>
       </div>
     </div>
   );

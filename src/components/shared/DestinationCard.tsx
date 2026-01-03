@@ -31,23 +31,23 @@ export function DestinationCard({
           alt={name}
           className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-background/90 via-background/20 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
         
         {/* Rating badge */}
-        <div className="absolute top-3 right-3 flex items-center gap-1 px-2 py-1 rounded-full bg-background/80 backdrop-blur-sm">
-          <Star className="h-3 w-3 text-amber fill-amber" />
-          <span className="text-xs font-medium">{rating}</span>
+        <div className="absolute top-3 right-3 flex items-center gap-1 px-2 py-1 rounded-full bg-black/50 backdrop-blur-sm">
+          <Star className="h-3 w-3 text-amber-400 fill-amber-400" />
+          <span className="text-xs font-medium text-white">{rating}</span>
         </div>
 
         {/* Content */}
         <div className="absolute bottom-0 left-0 right-0 p-4">
-          <h3 className="font-display text-lg font-semibold text-foreground">{name}</h3>
+          <h3 className="font-display text-lg font-semibold text-white">{name}</h3>
           <div className="flex items-center justify-between mt-1">
-            <div className="flex items-center gap-1 text-muted-foreground text-sm">
+            <div className="flex items-center gap-1 text-gray-200 text-sm">
               <MapPin className="h-3 w-3" />
               {country}
             </div>
-            <span className="text-xs text-primary font-medium">{priceRange}</span>
+            <span className="text-xs text-amber-400 font-medium">{priceRange}</span>
           </div>
         </div>
       </div>

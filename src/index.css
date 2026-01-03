@@ -16,8 +16,8 @@
     --popover: 30 20% 99%;
     --popover-foreground: 240 10% 15%;
 
-    /* Warm rose-gold primary */
-    --primary: 350 65% 55%;
+    /* Warm brown primary */
+    --primary: 30 65% 35%;
     --primary-foreground: 0 0% 100%;
 
     /* Warm beige secondary */
@@ -28,8 +28,8 @@
     --muted: 30 15% 92%;
     --muted-foreground: 240 8% 45%;
 
-    /* Terracotta accent */
-    --accent: 20 70% 55%;
+    /* Brown accent */
+    --accent: 25 70% 45%;
     --accent-foreground: 0 0% 100%;
 
     --destructive: 0 65% 50%;
@@ -38,19 +38,19 @@
     /* Warm borders */
     --border: 30 15% 88%;
     --input: 30 15% 90%;
-    --ring: 350 65% 55%;
+    --ring: 30 65% 35%;
 
     --radius: 0.75rem;
 
     /* Sidebar */
     --sidebar-background: 30 15% 97%;
     --sidebar-foreground: 240 10% 20%;
-    --sidebar-primary: 350 65% 55%;
+    --sidebar-primary: 30 65% 35%;
     --sidebar-primary-foreground: 0 0% 100%;
     --sidebar-accent: 30 20% 92%;
     --sidebar-accent-foreground: 240 10% 15%;
     --sidebar-border: 30 15% 88%;
-    --sidebar-ring: 350 65% 55%;
+    --sidebar-ring: 30 65% 35%;
 
     /* Custom travel colors */
     --coral: 15 75% 58%;
@@ -60,8 +60,8 @@
     --sage: 145 35% 45%;
     --lavender: 275 45% 58%;
     
-    /* Gradients - warm and subtle */
-    --gradient-hero: linear-gradient(135deg, hsl(350, 65%, 55%) 0%, hsl(20, 70%, 55%) 100%);
+    /* Gradients - warm brown */
+    --gradient-hero: linear-gradient(135deg, hsl(30, 65%, 35%) 0%, hsl(25, 70%, 45%) 100%);
     --gradient-card: linear-gradient(180deg, hsl(30, 15%, 98%) 0%, hsl(30, 15%, 95%) 100%);
     --gradient-glass: linear-gradient(135deg, hsla(30, 20%, 99%, 0.85) 0%, hsla(30, 15%, 96%, 0.75) 100%);
     --gradient-dark: linear-gradient(180deg, hsl(30, 20%, 98%) 0%, hsl(30, 15%, 96%) 100%);
@@ -70,7 +70,7 @@
     --shadow-sm: 0 2px 8px -2px hsla(30, 20%, 20%, 0.06);
     --shadow-md: 0 8px 24px -8px hsla(30, 20%, 20%, 0.1);
     --shadow-lg: 0 16px 48px -12px hsla(30, 20%, 20%, 0.12);
-    --shadow-glow: 0 0 40px hsla(350, 65%, 55%, 0.15);
+    --shadow-glow: 0 0 40px hsla(30, 65%, 35%, 0.15);
     --shadow-card: 0 4px 20px -4px hsla(30, 20%, 20%, 0.06), 0 0 0 1px hsla(30, 15%, 85%, 0.5);
   }
 
@@ -85,8 +85,8 @@
     --popover: 240 8% 12%;
     --popover-foreground: 30 15% 92%;
 
-    /* Rose-gold in dark mode */
-    --primary: 350 60% 60%;
+    /* Brown in dark mode */
+    --primary: 30 60% 50%;
     --primary-foreground: 240 8% 8%;
 
     --secondary: 240 6% 18%;
@@ -95,7 +95,7 @@
     --muted: 240 6% 16%;
     --muted-foreground: 30 10% 55%;
 
-    --accent: 20 65% 58%;
+    --accent: 25 65% 55%;
     --accent-foreground: 240 8% 8%;
 
     --destructive: 0 60% 55%;
@@ -103,19 +103,19 @@
 
     --border: 240 6% 20%;
     --input: 240 6% 18%;
-    --ring: 350 60% 60%;
+    --ring: 30 60% 50%;
 
     --sidebar-background: 240 8% 9%;
     --sidebar-foreground: 30 15% 88%;
-    --sidebar-primary: 350 60% 60%;
+    --sidebar-primary: 30 60% 50%;
     --sidebar-primary-foreground: 240 8% 8%;
     --sidebar-accent: 240 6% 15%;
     --sidebar-accent-foreground: 30 15% 92%;
     --sidebar-border: 240 6% 18%;
-    --sidebar-ring: 350 60% 60%;
+    --sidebar-ring: 30 60% 50%;
 
-    /* Gradients - warm in dark */
-    --gradient-hero: linear-gradient(135deg, hsl(350, 60%, 60%) 0%, hsl(20, 65%, 58%) 100%);
+    /* Gradients - warm brown in dark */
+    --gradient-hero: linear-gradient(135deg, hsl(30, 60%, 50%) 0%, hsl(25, 65%, 55%) 100%);
     --gradient-card: linear-gradient(180deg, hsl(240, 8%, 12%) 0%, hsl(240, 8%, 9%) 100%);
     --gradient-glass: linear-gradient(135deg, hsla(240, 8%, 14%, 0.85) 0%, hsla(240, 8%, 10%, 0.75) 100%);
     --gradient-dark: linear-gradient(180deg, hsl(240, 8%, 8%) 0%, hsl(240, 8%, 5%) 100%);
@@ -123,7 +123,7 @@
     --shadow-sm: 0 2px 8px -2px hsla(0, 0%, 0%, 0.35);
     --shadow-md: 0 8px 24px -8px hsla(0, 0%, 0%, 0.45);
     --shadow-lg: 0 16px 48px -12px hsla(0, 0%, 0%, 0.55);
-    --shadow-glow: 0 0 40px hsla(350, 60%, 60%, 0.2);
+    --shadow-glow: 0 0 40px hsla(30, 60%, 50%, 0.2);
     --shadow-card: 0 4px 20px -4px hsla(0, 0%, 0%, 0.35), 0 0 0 1px hsla(240, 6%, 25%, 0.3);
   }
 }
@@ -167,7 +167,6 @@
   /* Glass morphism cards */
   .glass-card {
     background: var(--gradient-glass);
-    backdrop-filter: blur(12px);
     border: 1px solid hsl(var(--border));
     box-shadow: var(--shadow-card);
   }
